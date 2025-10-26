@@ -31,12 +31,13 @@ export function LoginForm({
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const res = await login(data).unwrap();
-      if (res.success) {
-        toast.success("Logged in successfully");
-        navigate("/");
-      }
+      console.log(res);
+      // if (res.success) {
+      //   toast.success("Logged in successfully");
+      //   navigate("/");
+      // }
     } catch (err) {
-      // console.error(err);
+      console.error(err);
       // const error = err as { data?: { message?: string } };
       // if (error.data?.message === "Password does not match") {
       //   toast.error("Invalid credentials");
@@ -47,7 +48,11 @@ export function LoginForm({
       // }
       if (err.status === 401) {
         toast.error("Your account is not verified");
-        navigate("/verify");
+        navigate("/verify", { state: data.email });
+      } else if (err.data?.message) {
+        toast.error(err.data.message);
+      } else {
+        toast.error("Login failed. Please try again.");
       }
     }
     // console.log(data);

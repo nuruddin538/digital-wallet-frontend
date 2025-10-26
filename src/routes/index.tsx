@@ -1,4 +1,8 @@
 import App from "@/App";
+import About from "@/pages/About";
+import Contact from "@/pages/Contact";
+import FAQ from "@/pages/FAQ";
+import Features from "@/pages/Features";
 import Homepage from "@/pages/Homepage";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
@@ -13,6 +17,22 @@ export const router = createBrowserRouter([
       {
         Component: Homepage,
         index: true,
+      },
+      {
+        path: "about",
+        Component: About,
+      },
+      {
+        path: "features",
+        Component: Features,
+      },
+      {
+        path: "contact",
+        Component: Contact,
+      },
+      {
+        path: "faq",
+        Component: FAQ,
       },
     ],
   },
